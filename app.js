@@ -1,6 +1,5 @@
-const express = require('express');
-const morgan = require('morgan');
-const bodyParser = require('body-parser');
+import express from 'express';
+import morgan from 'morgan';
 
 // import app routes
 const tourRouter = require('./routes/tourRoutes');
