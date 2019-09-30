@@ -1,15 +1,20 @@
 import Tour from '../models/tourModel';
-
 import APIFeatures from '../utils/apiFeatures';
 
-// Alias routes for common routes
+/**
+ * Alias route for top 5 cheap tours
+ */
 export const aliasTopTours = async (req, res, next) => {
+  // Adds query fields for this alias route
   req.query.limit = '5';
   req.query.sort = '-ratingsAverage,price';
   req.query.fields = 'name,price,ratingsAverage,summary,difficulty';
   next();
 };
 
+/**
+ * Gets all tours in the database
+ */
 export const getAllTours = async (req, res) => {
   try {
     const features = new APIFeatures(Tour.find(), req.query)

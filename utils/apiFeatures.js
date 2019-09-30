@@ -1,21 +1,37 @@
+/**
+ *  APIFeatures - All features for quering a route on the API
+ *
+ * @param  {Object} query - This is a mongoose Query object
+ * @param  {Object} requestQueryObject - This is the req.query
+ *
+ */
 class APIFeatures {
   constructor(query, requestQueryObject) {
     this.query = query;
     this.requestQueryObject = requestQueryObject;
   }
 
+  /**
+   *  APIFeatures.filter() - filter some fields
+   *  Options: gte|gt|lte|lt
+   *  Example: duration[gte]: 5
+   */
   filter() {
+    // queryObj example: { duration: { gte: '5' } }
     const queryObj = { ...this.requestQueryObject };
     // Fields that are to be deleted from the queryObj
     const excludedFields = ['page', 'sort', 'limit', 'fields'];
+    // deletes these excluded fields from the queryObj
     excludedFields.forEach(el => delete queryObj[el]);
 
     // Stringify's the queryObj to replace gte => $gte
+    // Example: queryString = "{"duration":{"$gte":"5"}}"
     const queryString = JSON.stringify(queryObj).replace(
       /\b(gte|gt|lte|lt)\b/g,
       match => `$${match}`
     );
 
+    // pipes this filter into the query and returns this for further chaining
     this.query = this.query.find(JSON.parse(queryString));
     return this;
   }
