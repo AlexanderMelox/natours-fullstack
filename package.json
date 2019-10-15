@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "dev": "nodemon --exec babel-node server.js",
-    "start": "NODE_ENV=production node server.js"
+    "start": "NODE_ENV=production node server.js",
+    "debug": "ndb server.js",
+    "prod:test": "NODE_ENV=production nodemon server.js"
   },
   "author": "Alexander Melo",
   "license": "ISC",
@@ -30,6 +32,7 @@
     "eslint-plugin-node": "^9.1.0",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.14.3",
+    "ndb": "^1.1.5",
     "nodemon": "^1.19.1",
     "prettier": "^1.18.2"
   },

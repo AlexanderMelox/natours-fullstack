@@ -1,5 +1,5 @@
-import express from 'express';
-import {
+const express = require('express');
+const {
   getAllTours,
   createTour,
   getTour,
@@ -8,7 +8,7 @@ import {
   aliasTopTours,
   getTourStats,
   getMonthlyPlan
-} from '../controllers/tourController';
+} = require('../controllers/tourController');
 
 const router = express.Router();
 

@@ -120,4 +120,4 @@ tourSchema.pre('aggregate', function(next) {
 
 const Tour = mongoose.model('Tour', tourSchema);
 
-export default Tour;
+module.exports = Tour;
